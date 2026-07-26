@@ -33,3 +33,28 @@ This section documents containerization strategies, environment isolates, and se
 * **Storage Driver:** Configured Docker to use the **overlay2** storage driver for optimal layer management and performance.
 * **Stack Deployment:** Standardized container deployments using `docker-compose.yml` declarations managed via CLI (`docker compose up -d`).
 * **Volume Persistence:** Mapped host-bound persistent volumes to prevent data loss across container recreations.
+
+## 🛠️ Essential Docker & Compose Commands
+
+### 📦 Stack Orchestration (Compose)
+* **Start stack in background:** `docker compose up -d`
+* **Stop and remove stack:** `docker compose down`
+* **Stop stack without removing containers:** `docker compose stop`
+* **Restart stack services:** `docker compose restart`
+* **Rebuild/pull and force recreate containers:** `docker compose up -d --force-recreate`
+
+### 🔍 Monitoring & Diagnostics
+* **View running containers:** `docker ps`
+* **View all containers (including stopped):** `docker ps -a`
+* **View real-time logs for a stack:** `docker compose logs -f`
+* **View logs for a specific container:** `docker logs -f <container_name>`
+* **Monitor resource usage (CPU/RAM):** `docker stats`
+
+### 💻 Container Interaction
+* **Open interactive shell inside a running container:** 
+  `docker exec -it <container_name> /bin/sh`  *(or `/bin/bash`)*
+* **Check container health & environment config:** `docker inspect <container_name>`
+
+### 🧹 System Cleanup (Pruning)
+* **Remove unused stopped containers, networks, and dangling images:** `docker system prune`
+* **Full deep clean (includes unused volumes):** `docker system prune -a --volumes`
