@@ -26,3 +26,10 @@ This section documents containerization strategies, environment isolates, and se
 ## 📌 References & Documentation
 * [Proxmox VE LXC Official Administration Guide](https://pve.proxmox.com/pve-docs/pve-admin-guide.html#chapter_pct)
 * [Proxmox VE Linux Container Wiki](https://pve.proxmox.com/wiki/Linux_Container)
+
+### Step 4: Docker & Compose Engine Setup (Nested Containerisation)
+
+* **Proxmox Feature Flags:** Enabled **Keyctl** and **Nesting** (`nesting=1`) in LXC Container Options to allow Docker engine execution inside an unprivileged LXC container.
+* **Storage Driver:** Configured Docker to use the **overlay2** storage driver for optimal layer management and performance.
+* **Stack Deployment:** Standardized container deployments using `docker-compose.yml` declarations managed via CLI (`docker compose up -d`).
+* **Volume Persistence:** Mapped host-bound persistent volumes to prevent data loss across container recreations.
