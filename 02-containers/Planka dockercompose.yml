@@ -1,4 +1,6 @@
 # Planka tryout
+# Planka Docker Compose Configuration
+# Source / Upstream: https://github.com/plankanban/planka
 services:
   planka:
     image: ghcr.io/plankanban/planka:latest
