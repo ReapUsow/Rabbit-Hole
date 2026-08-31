@@ -1,7 +1,7 @@
 # 02 - Containers (Orchestration)
 
 ## 🎯 Purpose & Scope
-This section documents containerization strategies, environment isolates, and service orchestrations running on top of Linux hosts or within Proxmox LXC containers.
+This section documents containerisation strategies, environment isolates, and service orchestrations running on top of Linux hosts or within Proxmox LXC containers.
 
 ---
 
@@ -31,7 +31,7 @@ This section documents containerization strategies, environment isolates, and se
 
 * **Proxmox Feature Flags:** Enabled **Keyctl** and **Nesting** (`nesting=1`) in LXC Container Options to allow Docker engine execution inside an unprivileged LXC container.
 * **Storage Driver:** Configured Docker to use the **overlay2** storage driver for optimal layer management and performance.
-* **Stack Deployment:** Standardized container deployments using `docker-compose.yml` declarations managed via CLI (`docker compose up -d`).
+* **Stack Deployment:** Standardied container deployments using `docker-compose.yml` declarations managed via CLI (`docker compose up -d`).
 * **Volume Persistence:** Mapped host-bound persistent volumes to prevent data loss across container recreations.
 
 ## 🛠️ Essential Docker & Compose Commands
@@ -58,3 +58,14 @@ This section documents containerization strategies, environment isolates, and se
 ### 🧹 System Cleanup (Pruning)
 * **Remove unused stopped containers, networks, and dangling images:** `docker system prune`
 * **Full deep clean (includes unused volumes):** `docker system prune -a --volumes`
+
+---
+
+## 🛡️ Featured Projects
+
+### [Denfira-2 Infrastructure Stack](./denfira-2/README.md)
+* **Architecture:** Zero-trust Tailscale sidecar container mesh governed by Headscale control plane.
+* **Storage & Security:** Multi-tier NVMe OS drive paired with auto-unlocked BitLocker HDD mirrors (`H:` and `I:`).
+* **Workloads:** Nextcloud (MariaDB), Vaultwarden (SQLite), Planka (PostgreSQL), and Nginx Proxy Manager (mkcert private PKI).
+* **Disaster Recovery:** Crash-consistent `docker pause` nightly SQLite snapshots and automated hourly Robocopy replication tasks.
+
