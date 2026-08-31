@@ -46,7 +46,7 @@
 
 ## 📦 1. Complete Docker Compose Stack
 
-File path: `C:\dev\container\docker-compose.yml`
+File path: `C:\dev\container\docker-compose.yml` (NOTE: **Can be place in any directory, as long you can find it in your local drive or any drive**)
 
 ```yaml
 services:
