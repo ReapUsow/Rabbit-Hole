@@ -4,6 +4,34 @@
 
 ## Architecture Overview
 
+```mermaid
+flowchart TD
+    subgraph ControlPlane["Headscale Control Plane"]
+        HS["Headscale (Control Plane)<br/>- Node Keys & WireGuard IPs<br/>- MagicDNS Coordinator"]
+    end
+
+    subgraph Clients["Client Endpoints"]
+        CD["Client Devices (Phones/Workstations)<br/>- mkcert Root CA Installed"]
+    end
+
+    subgraph Host["Docker Host (denfira)"]
+        TS["Tailscale Sidecar (denfira-2)<br/>(Shares network namespace)"]
+        NPM["Nginx Proxy Manager<br/>- Port 443 (SSL Termination)<br/>- Custom Wildcard Cert (mkcert)"]
+        VW["Vaultwarden<br/>Port: 10000"]
+        NC["Nextcloud<br/>Port: 8880"]
+        PL["Planka<br/>Port: 1337"]
+
+        TS -->|TLS / SSL Offload| NPM
+        NPM -->|:10000| VW
+        NPM -->|:8880| NC
+        NPM -->|:1337| PL
+    end
+
+    HS -.->|Key Exchange & MagicDNS| CD
+    HS ==>|Control Plane Traffic| TS
+    CD ==>|WireGuard P2P Data Plane Tunnel| TS
+```
+
 - **OS Drive (C:)**: NVMe SSD (BitLocker Encrypted via TPM). Hosts Docker engine, Compose files, and low-latency databases.
 - **Primary HDD (H:)**: Miri-Da (1TB, BitLocker Encrypted + Auto-Unlock). Active payload storage for Nextcloud (`H:\NextcloudData`) and Vaultwarden nightly backups (`H:\VaultwardenBackup`).
 - **Secondary Mirror HDD (I:)**: Miri-Da-Backup (1TB, BitLocker Encrypted + Auto-Unlock). Async mirror target.
