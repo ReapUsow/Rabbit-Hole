@@ -1,4 +1,4 @@
-* # Denfira-2 Infrastructure Runbook: Sidecar Mesh, BitLocker & Disaster Recovery
+# Denfira-2 Infrastructure Runbook: Sidecar Mesh, BitLocker & Disaster Recovery
 
 ## 🎯 Architecture Overview
 
